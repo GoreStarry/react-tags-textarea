@@ -55,6 +55,10 @@
   padding: 5px;
   margin: 0 5px;
   border-radius: 2px;
+  white-space: pre-wrap;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
 }
 .ReactTags__selected a.ReactTags__remove {
   color: #aaa;

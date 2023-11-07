@@ -176,6 +176,7 @@ Option | Type | Default | Description
 | [`onTagUpdate`](#onTagUpdate) | `Function` | | This callback if present is triggered when tag is edited.|
 |[`clearAll`](#clearAll) | `boolean` | `false` | Implies whether 'clear all' button should be shown.
 |[`onClearAll`](#onClearAll) | `Function` |  | This callback if present is triggered when clear all button is clicked.
+|[`inputType`](#inputType) | `String` | `input` | Specifies which input type should be used among `input` and `textarea`
 
 ### tags 
 An array of tags that are displayed as pre-selected. Each tag should have an `id` property, property for the label, which is specified by the [`labelField`](#labelFieldOption) and class for label, which is specified by `className`.
@@ -483,6 +484,11 @@ This props allows to provide your own suggestion renderer and override the defau
     renderSuggestion = {({ text }, query) => <div style={{ textDecoration: 'underline', textDecorationStyle: 'wavy' }}>{text} ({ query })</div>}
     ...>
 ```
+
+
+#### inputType (optional, defaults to `input`)
+The inputType attribute decides to use which type of the input html tag. Can be one of `input` or `textarea`.
+
 
 ### inputProps
 

@@ -72,6 +72,7 @@ class ReactTags extends Component {
     editable: PropTypes.bool,
     clearAll: PropTypes.bool,
     onClearAll: PropTypes.func,
+    inputType: PropTypes.oneOf(['input', 'textarea']),
   };
 
   static defaultProps = {
@@ -96,6 +97,7 @@ class ReactTags extends Component {
     editable: false,
     clearAll: false,
     handleClearAll: noop,
+    inputType: 'input',
   };
 
   constructor(props) {
@@ -493,15 +495,15 @@ class ReactTags extends Component {
       inputProps,
       clearAll,
       tags,
+      inputType: InputHtmlTag,
     } = this.props;
 
     const position = !inline
       ? INPUT_FIELD_POSITIONS.BOTTOM
       : inputFieldPosition;
-
     const tagInput = !this.props.readOnly ? (
       <div className={classNames.tagInput}>
-        <input
+        <InputHtmlTag
           {...inputProps}
           ref={(input) => {
             this.textInput = input;

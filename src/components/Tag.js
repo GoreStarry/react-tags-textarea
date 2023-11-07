@@ -51,7 +51,7 @@ const Tag = (props) => {
       }}
       onClick={props.onTagClicked}
       onTouchStart={props.onTagClicked}>
-      {label}
+      <div>{label}</div>
       <RemoveComponent
         tag={props.tag}
         className={classNames.remove}

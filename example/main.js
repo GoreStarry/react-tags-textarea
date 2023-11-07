@@ -288,6 +288,7 @@ const App = () => {
           editable
           clearAll
           onClearAll={onClearAll}
+          inputType="textarea"
         />
       </div>
     </div>
