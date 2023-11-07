@@ -276,7 +276,7 @@ const App = () => {
       <div>
         <Tags
           tags={tags}
-          suggestions={suggestions}
+          // suggestions={suggestions}
           delimiters={delimiters}
           handleDelete={handleDelete}
           handleAddition={handleAddition}
@@ -284,7 +284,7 @@ const App = () => {
           handleTagClick={handleTagClick}
           onTagUpdate={onTagUpdate}
           inputFieldPosition="bottom"
-          autocomplete
+          // autocomplete
           editable
           clearAll
           onClearAll={onClearAll}

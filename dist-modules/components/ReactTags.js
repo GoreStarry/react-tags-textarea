@@ -147,7 +147,8 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         labelField = _this$props2.labelField,
         removeComponent = _this$props2.removeComponent,
         readOnly = _this$props2.readOnly,
-        allowDragDrop = _this$props2.allowDragDrop;
+        allowDragDrop = _this$props2.allowDragDrop,
+        InputHtmlTag = _this$props2.inputType;
       var classNames = _objectSpread(_objectSpread({}, _constants.DEFAULT_CLASSNAMES), _this.props.classNames);
       var _this$state2 = _this.state,
         currentEditIndex = _this$state2.currentEditIndex,
@@ -158,7 +159,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
           key: index
         }, currentEditIndex === index ? /*#__PURE__*/_react["default"].createElement("div", {
           className: classNames.editTagInput
-        }, /*#__PURE__*/_react["default"].createElement("input", {
+        }, /*#__PURE__*/_react["default"].createElement(InputHtmlTag, {
           ref: function ref(input) {
             _this.tagInput = input;
           },
@@ -365,7 +366,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       }
 
       // up arrow
-      if (e.keyCode === _constants.KEYS.UP_ARROW) {
+      if (suggestions !== null && suggestions !== void 0 && suggestions.length && e.keyCode === _constants.KEYS.UP_ARROW) {
         e.preventDefault();
         this.setState({
           selectedIndex: selectedIndex <= 0 ? suggestions.length - 1 : selectedIndex - 1,
@@ -374,7 +375,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       }
 
       // down arrow
-      if (e.keyCode === _constants.KEYS.DOWN_ARROW) {
+      if (suggestions !== null && suggestions !== void 0 && suggestions.length && e.keyCode === _constants.KEYS.DOWN_ARROW) {
         e.preventDefault();
         this.setState({
           selectedIndex: suggestions.length === 0 ? -1 : (selectedIndex + 1) % suggestions.length,

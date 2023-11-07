@@ -316,7 +316,7 @@ class ReactTags extends Component {
     }
 
     // up arrow
-    if (e.keyCode === KEYS.UP_ARROW) {
+    if (suggestions?.length && e.keyCode === KEYS.UP_ARROW) {
       e.preventDefault();
       this.setState({
         selectedIndex:
@@ -326,7 +326,7 @@ class ReactTags extends Component {
     }
 
     // down arrow
-    if (e.keyCode === KEYS.DOWN_ARROW) {
+    if (suggestions?.length && e.keyCode === KEYS.DOWN_ARROW) {
       e.preventDefault();
       this.setState({
         selectedIndex:
@@ -431,8 +431,14 @@ class ReactTags extends Component {
   }
 
   getTagItems = () => {
-    const { tags, labelField, removeComponent, readOnly, allowDragDrop } =
-      this.props;
+    const {
+      tags,
+      labelField,
+      removeComponent,
+      readOnly,
+      allowDragDrop,
+      inputType: InputHtmlTag,
+    } = this.props;
     const classNames = { ...DEFAULT_CLASSNAMES, ...this.props.classNames };
 
     const { currentEditIndex, query } = this.state;
@@ -442,7 +448,7 @@ class ReactTags extends Component {
         <React.Fragment key={index}>
           {currentEditIndex === index ? (
             <div className={classNames.editTagInput}>
-              <input
+              <InputHtmlTag
                 ref={(input) => {
                   this.tagInput = input;
                 }}
