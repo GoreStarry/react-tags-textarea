@@ -73,6 +73,7 @@ class ReactTags extends Component {
     clearAll: PropTypes.bool,
     onClearAll: PropTypes.func,
     inputType: PropTypes.oneOf(['input', 'textarea']),
+    isUseTagID: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -98,6 +99,7 @@ class ReactTags extends Component {
     clearAll: false,
     handleClearAll: noop,
     inputType: 'input',
+    isUseTagID: false,
   };
 
   constructor(props) {
@@ -437,6 +439,7 @@ class ReactTags extends Component {
       removeComponent,
       readOnly,
       allowDragDrop,
+      isUseTagID,
       inputType: InputHtmlTag,
     } = this.props;
     const classNames = { ...DEFAULT_CLASSNAMES, ...this.props.classNames };

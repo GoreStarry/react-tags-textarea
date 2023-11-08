@@ -67,10 +67,12 @@ var Tag = function Tag(props) {
   drag(drop(tagRef));
   var label = props.tag[props.labelField];
   var _tag$className = tag.className,
-    className = _tag$className === void 0 ? '' : _tag$className;
+    className = _tag$className === void 0 ? '' : _tag$className,
+    id = tag.id;
   /* istanbul ignore next */
   var opacity = isDragging ? 0 : 1;
   var tagComponent = /*#__PURE__*/_react["default"].createElement("span", {
+    id: id && "tag-".concat(id),
     ref: tagRef,
     className: (0, _classnames["default"])('tag-wrapper', classNames.tag, className),
     style: {

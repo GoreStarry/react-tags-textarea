@@ -148,6 +148,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         removeComponent = _this$props2.removeComponent,
         readOnly = _this$props2.readOnly,
         allowDragDrop = _this$props2.allowDragDrop,
+        isUseTagID = _this$props2.isUseTagID,
         InputHtmlTag = _this$props2.inputType;
       var classNames = _objectSpread(_objectSpread({}, _constants.DEFAULT_CLASSNAMES), _this.props.classNames);
       var _this$state2 = _this.state,
@@ -561,7 +562,8 @@ _defineProperty(ReactTags, "propTypes", {
   editable: _propTypes["default"].bool,
   clearAll: _propTypes["default"].bool,
   onClearAll: _propTypes["default"].func,
-  inputType: _propTypes["default"].oneOf(['input', 'textarea'])
+  inputType: _propTypes["default"].oneOf(['input', 'textarea']),
+  isUseTagID: _propTypes["default"].bool
 });
 _defineProperty(ReactTags, "defaultProps", {
   placeholder: _constants.DEFAULT_PLACEHOLDER,
@@ -586,7 +588,8 @@ _defineProperty(ReactTags, "defaultProps", {
   editable: false,
   clearAll: false,
   handleClearAll: _noop["default"],
-  inputType: 'input'
+  inputType: 'input',
+  isUseTagID: false
 });
 var WithContext = exports.WithContext = function WithContext(_ref2) {
   var props = _extends({}, (_objectDestructuringEmpty(_ref2), _ref2));

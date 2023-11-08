@@ -38,11 +38,12 @@ const Tag = (props) => {
   drag(drop(tagRef));
 
   const label = props.tag[props.labelField];
-  const { className = '' } = tag;
+  const { className = '', id } = tag;
   /* istanbul ignore next */
   const opacity = isDragging ? 0 : 1;
   const tagComponent = (
     <span
+      id={id && `tag-${id}`}
       ref={tagRef}
       className={ClassNames('tag-wrapper', classNames.tag, className)}
       style={{
