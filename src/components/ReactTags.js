@@ -238,14 +238,16 @@ class ReactTags extends Component {
       this.props.handleInputChange(e.target.value);
     }
 
-    const query = e.target.value.trim();
+    // remove trim to make tag can used by textarea switch line
+    // const query = e.target.value.trim();
+    const query = e.target.value;
 
     this.setState({ query }, this.updateSuggestions);
   }
 
   updateSuggestions = () => {
     const { query, selectedIndex } = this.state;
-    const suggestions = this.filteredSuggestions(query);
+    const suggestions = this.filteredSuggestions(query.trim());
 
     this.setState({
       suggestions: suggestions,

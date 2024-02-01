@@ -94,7 +94,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       var _this$state = _this.state,
         query = _this$state.query,
         selectedIndex = _this$state.selectedIndex;
-      var suggestions = _this.filteredSuggestions(query);
+      var suggestions = _this.filteredSuggestions(query.trim());
       _this.setState({
         suggestions: suggestions,
         selectedIndex: selectedIndex >= suggestions.length ? suggestions.length - 1 : selectedIndex
@@ -294,7 +294,10 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       if (this.props.handleInputChange) {
         this.props.handleInputChange(e.target.value);
       }
-      var query = e.target.value.trim();
+
+      // remove trim to make tag can used by textarea switch line
+      // const query = e.target.value.trim();
+      var query = e.target.value;
       this.setState({
         query: query
       }, this.updateSuggestions);
