@@ -21,6 +21,7 @@ const Tag = (props) => {
     canDrag: () => canDrag(props),
   }));
 
+
   const [, drop] = useDrop(() => ({
     accept: ItemTypes.TAG,
     drop: (item, monitor) => {
@@ -38,6 +39,7 @@ const Tag = (props) => {
   drag(drop(tagRef));
 
   const label = props.tag[props.labelField];
+  const children = props.tag.children;
   const { className = '', id } = tag;
   /* istanbul ignore next */
   const opacity = isDragging ? 0 : 1;
@@ -53,6 +55,7 @@ const Tag = (props) => {
       onClick={props.onTagClicked}
       onTouchStart={props.onTagClicked}>
       <div>{label}</div>
+      {children}
       <RemoveComponent
         tag={props.tag}
         className={classNames.remove}

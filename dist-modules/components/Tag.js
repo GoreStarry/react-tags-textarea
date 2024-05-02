@@ -66,6 +66,7 @@ var Tag = function Tag(props) {
     drop = _useDrop2[1];
   drag(drop(tagRef));
   var label = props.tag[props.labelField];
+  var children = props.tag.children;
   var _tag$className = tag.className,
     className = _tag$className === void 0 ? '' : _tag$className,
     id = tag.id;
@@ -81,7 +82,7 @@ var Tag = function Tag(props) {
     },
     onClick: props.onTagClicked,
     onTouchStart: props.onTagClicked
-  }, /*#__PURE__*/_react["default"].createElement("div", null, label), /*#__PURE__*/_react["default"].createElement(_RemoveComponent["default"], {
+  }, /*#__PURE__*/_react["default"].createElement("div", null, label), children, /*#__PURE__*/_react["default"].createElement(_RemoveComponent["default"], {
     tag: props.tag,
     className: classNames.remove,
     removeComponent: props.removeComponent,

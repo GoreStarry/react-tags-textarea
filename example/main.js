@@ -228,12 +228,16 @@ const KeyCodes = {
 const delimiters = [...KeyCodes.enter, KeyCodes.comma];
 
 const Tags = ReactTags.WithContext;
+
+const Test = ()=>{
+ return <div>Test</div>
+}
 const App = () => {
   const [tags, setTags] = React.useState([
-    { id: 'Thailand', text: 'Thailand' },
-    { id: 'India', text: 'India' },
-    { id: 'Vietnam', text: 'Vietnam' },
-    { id: 'Turkey', text: 'Turkey' },
+    { id: 'Thailand', text: 'Thailand',children: <Test/>},
+    { id: 'India', text: 'India' ,children: <Test/>},
+    { id: 'Vietnam', text: 'Vietnam' ,children: <Test/>},
+    { id: 'Turkey', text: 'Turkey' ,children: <Test/>},
   ]);
 
   const handleDelete = (i) => {
@@ -286,6 +290,7 @@ const App = () => {
           inputFieldPosition="bottom"
           // autocomplete
           editable
+          readOnly
           clearAll
           onClearAll={onClearAll}
           inputType="textarea"
