@@ -565,7 +565,8 @@ _defineProperty(ReactTags, "propTypes", {
   editable: _propTypes["default"].bool,
   clearAll: _propTypes["default"].bool,
   onClearAll: _propTypes["default"].func,
-  inputType: _propTypes["default"].oneOf(['input', 'textarea']),
+  inputType: _propTypes["default"].oneOfType([_propTypes["default"].string, _propTypes["default"].object]),
+  // PropTypes.oneOf(['input', 'textarea']),
   isUseTagID: _propTypes["default"].bool
 });
 _defineProperty(ReactTags, "defaultProps", {

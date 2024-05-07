@@ -72,7 +72,10 @@ class ReactTags extends Component {
     editable: PropTypes.bool,
     clearAll: PropTypes.bool,
     onClearAll: PropTypes.func,
-    inputType: PropTypes.oneOf(['input', 'textarea']),
+    inputType: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]), // PropTypes.oneOf(['input', 'textarea']),
     isUseTagID: PropTypes.bool,
   };
 
