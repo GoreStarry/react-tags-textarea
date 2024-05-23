@@ -54,7 +54,7 @@ var Tag = function Tag(props) {
       onTagClicked();
     },
     onDoubleClick: function onDoubleClick(e) {
-      setIsReadyOnly(function (state) {
+      setIsReadyOnly === null || setIsReadyOnly === void 0 || setIsReadyOnly(function (state) {
         return !state;
       });
     },

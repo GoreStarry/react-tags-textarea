@@ -27,7 +27,7 @@ const Tag = (props) => {
 			onTagClicked()
 		},
 		onDoubleClick: (e) => {
-			setIsReadyOnly((state) => !state);
+			setIsReadyOnly?.((state) => !state);
 		},
 		ref: tagRef,
 		latency: 250,
