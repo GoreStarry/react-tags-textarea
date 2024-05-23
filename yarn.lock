@@ -9989,6 +9989,11 @@ url-parse@^1.5.3:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
 
+use-double-click@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/use-double-click/-/use-double-click-1.0.5.tgz#656a3c3c528b5cd3ff40ee548bac0d50b714dfc6"
+  integrity sha512-71LUca6NtzpzHYlcfM/dOdmwvmvpMbzeIVQpN87w+DctpLiMCXtZpsN8FNWPgHpPBtNhvucPUHIDh5al8D8C7w==
+
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"

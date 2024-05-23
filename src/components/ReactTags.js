@@ -77,6 +77,7 @@ class ReactTags extends Component {
       PropTypes.object
     ]), // PropTypes.oneOf(['input', 'textarea']),
     isUseTagID: PropTypes.bool,
+    setIsReadyOnly: PropTypes.func
   };
 
   static defaultProps = {
@@ -446,6 +447,7 @@ class ReactTags extends Component {
       allowDragDrop,
       isUseTagID,
       inputType: InputHtmlTag,
+      setIsReadyOnly,
     } = this.props;
     const classNames = { ...DEFAULT_CLASSNAMES, ...this.props.classNames };
 
@@ -482,6 +484,7 @@ class ReactTags extends Component {
               readOnly={readOnly}
               classNames={classNames}
               allowDragDrop={allowDragDrop}
+              setIsReadyOnly={setIsReadyOnly}
             />
           )}
         </React.Fragment>

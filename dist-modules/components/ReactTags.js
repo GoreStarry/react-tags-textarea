@@ -149,7 +149,8 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         readOnly = _this$props2.readOnly,
         allowDragDrop = _this$props2.allowDragDrop,
         isUseTagID = _this$props2.isUseTagID,
-        InputHtmlTag = _this$props2.inputType;
+        InputHtmlTag = _this$props2.inputType,
+        setIsReadyOnly = _this$props2.setIsReadyOnly;
       var classNames = _objectSpread(_objectSpread({}, _constants.DEFAULT_CLASSNAMES), _this.props.classNames);
       var _this$state2 = _this.state,
         currentEditIndex = _this$state2.currentEditIndex,
@@ -182,7 +183,8 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
           onTagClicked: _this.handleTagClick.bind(_assertThisInitialized(_this), index, tag),
           readOnly: readOnly,
           classNames: classNames,
-          allowDragDrop: allowDragDrop
+          allowDragDrop: allowDragDrop,
+          setIsReadyOnly: setIsReadyOnly
         }));
       });
     });
@@ -567,7 +569,8 @@ _defineProperty(ReactTags, "propTypes", {
   onClearAll: _propTypes["default"].func,
   inputType: _propTypes["default"].oneOfType([_propTypes["default"].string, _propTypes["default"].object]),
   // PropTypes.oneOf(['input', 'textarea']),
-  isUseTagID: _propTypes["default"].bool
+  isUseTagID: _propTypes["default"].bool,
+  setIsReadyOnly: _propTypes["default"].func
 });
 _defineProperty(ReactTags, "defaultProps", {
   placeholder: _constants.DEFAULT_PLACEHOLDER,

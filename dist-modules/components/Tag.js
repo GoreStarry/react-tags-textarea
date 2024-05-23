@@ -10,6 +10,7 @@ var _reactDnd = require("react-dnd");
 var _propTypes = _interopRequireDefault(require("prop-types"));
 var _classnames = _interopRequireDefault(require("classnames"));
 var _utils = require("./utils");
+var _useDoubleClick = _interopRequireDefault(require("use-double-click"));
 var _RemoveComponent = _interopRequireDefault(require("./RemoveComponent"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -28,7 +29,9 @@ var Tag = function Tag(props) {
   var readOnly = props.readOnly,
     tag = props.tag,
     classNames = props.classNames,
-    index = props.index;
+    index = props.index,
+    setIsReadyOnly = props.setIsReadyOnly,
+    onTagClicked = props.onTagClicked;
   var _useDrag = (0, _reactDnd.useDrag)(function () {
       return {
         type: ItemTypes.TAG,
@@ -46,6 +49,18 @@ var Tag = function Tag(props) {
     _useDrag2 = _slicedToArray(_useDrag, 2),
     isDragging = _useDrag2[0].isDragging,
     drag = _useDrag2[1];
+  (0, _useDoubleClick["default"])({
+    onSingleClick: function onSingleClick(e) {
+      onTagClicked();
+    },
+    onDoubleClick: function onDoubleClick(e) {
+      setIsReadyOnly(function (state) {
+        return !state;
+      });
+    },
+    ref: tagRef,
+    latency: 250
+  });
   var _useDrop = (0, _reactDnd.useDrop)(function () {
       return {
         accept: ItemTypes.TAG,
@@ -79,9 +94,7 @@ var Tag = function Tag(props) {
     style: {
       opacity: opacity,
       cursor: (0, _utils.canDrag)(props) ? 'move' : 'auto'
-    },
-    onClick: props.onTagClicked,
-    onTouchStart: props.onTagClicked
+    }
   }, /*#__PURE__*/_react["default"].createElement("div", null, label), children, /*#__PURE__*/_react["default"].createElement(_RemoveComponent["default"], {
     tag: props.tag,
     className: classNames.remove,
