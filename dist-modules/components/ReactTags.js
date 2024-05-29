@@ -286,8 +286,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
           var _this2$tagInput;
           _this2 === null || _this2 === void 0 || (_this2$tagInput = _this2.tagInput) === null || _this2$tagInput === void 0 || _this2$tagInput.focus();
         });
-      }
-      if (handleTagClick) {
+      } else if (handleTagClick) {
         handleTagClick(i, e);
       }
     }

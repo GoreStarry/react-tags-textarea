@@ -231,8 +231,7 @@ class ReactTags extends Component {
       this.setState({ currentEditIndex: i, query: tag[labelField] }, () => {
         this?.tagInput?.focus();
       });
-    }
-    if (handleTagClick) {
+    } else if (handleTagClick) {
       handleTagClick(i, e);
     }
   }
