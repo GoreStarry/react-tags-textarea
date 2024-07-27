@@ -22,7 +22,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var ItemTypes = {
-  TAG: 'tag'
+  TAG: "tag"
 };
 var Tag = function Tag(props) {
   var tagRef = (0, _react.useRef)(null);
@@ -83,19 +83,28 @@ var Tag = function Tag(props) {
   var label = props.tag[props.labelField];
   var children = props.tag.children;
   var _tag$className = tag.className,
-    className = _tag$className === void 0 ? '' : _tag$className,
+    className = _tag$className === void 0 ? "" : _tag$className,
     id = tag.id;
   /* istanbul ignore next */
   var opacity = isDragging ? 0 : 1;
+  var markedLabel = (0, _react.useMemo)(function () {
+    return {
+      __html: label.replace(RegExp(/`(.*?)`/, "gi"), function (x, y) {
+        return "<mark>".concat(y, "</mark>");
+      })
+    };
+  }, [label]);
   var tagComponent = /*#__PURE__*/_react["default"].createElement("span", {
     id: id && "tag-".concat(id),
     ref: tagRef,
-    className: (0, _classnames["default"])('tag-wrapper', classNames.tag, className),
+    className: (0, _classnames["default"])("tag-wrapper", classNames.tag, className),
     style: {
       opacity: opacity,
-      cursor: (0, _utils.canDrag)(props) ? 'move' : 'auto'
+      cursor: (0, _utils.canDrag)(props) ? "move" : "auto"
     }
-  }, /*#__PURE__*/_react["default"].createElement("div", null, label), children, /*#__PURE__*/_react["default"].createElement(_RemoveComponent["default"], {
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    dangerouslySetInnerHTML: markedLabel
+  }), children, /*#__PURE__*/_react["default"].createElement(_RemoveComponent["default"], {
     tag: props.tag,
     className: classNames.remove,
     removeComponent: props.removeComponent,
@@ -121,7 +130,7 @@ Tag.propTypes = {
   index: _propTypes["default"].number.isRequired
 };
 Tag.defaultProps = {
-  labelField: 'text',
+  labelField: "text",
   readOnly: false
 };
 var _default = exports["default"] = Tag;
