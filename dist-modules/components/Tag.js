@@ -89,8 +89,8 @@ var Tag = function Tag(props) {
   var opacity = isDragging ? 0 : 1;
   var markedLabel = (0, _react.useMemo)(function () {
     return {
-      __html: label.replace(RegExp(/`(.*?)`/, "gi"), function (x, y) {
-        return "<mark>".concat(y, "</mark>");
+      __html: label.replace(RegExp(/`(.*?)`/, "gi"), function (x, y, i) {
+        return "<mark ".concat(i === 0 ? "class='op'" : "", ">").concat(y, "</mark>");
       })
     };
   }, [label]);

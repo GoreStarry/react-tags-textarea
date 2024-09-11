@@ -58,8 +58,8 @@ const Tag = (props) => {
 
 	const markedLabel = useMemo(() => {
 		return {
-			__html: label.replace(RegExp(/`(.*?)`/, "gi"), (x, y) => {
-				return `<mark>${y}</mark>`;
+			__html: label.replace(RegExp(/`(.*?)`/, "gi"), (x, y, i) => {
+				return `<mark ${i === 0 ? "class='op'" : ""}>${y}</mark>`;
 			}),
 		};
 	}, [label]);
