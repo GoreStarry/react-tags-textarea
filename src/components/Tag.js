@@ -67,15 +67,16 @@ const Tag = (props) => {
 	const tagComponent = (
 		<span
 			id={id && `tag-${id}`}
-			ref={tagRef}
 			className={ClassNames("tag-wrapper", classNames.tag, className)}
 			style={{
 				opacity,
 				cursor: canDrag(props) ? "move" : "auto",
 			}}
 		>
-			<div dangerouslySetInnerHTML={markedLabel}></div>
-			{children}
+			<div ref={tagRef}>
+				<div dangerouslySetInnerHTML={markedLabel}></div>
+				{children}
+			</div>
 			<RemoveComponent
 				tag={props.tag}
 				className={classNames.remove}

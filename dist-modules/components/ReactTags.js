@@ -83,10 +83,10 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
     });
     _defineProperty(_assertThisInitialized(_this), "resetAndFocusInput", function () {
       _this.setState({
-        query: ''
+        query: ""
       });
       if (_this.textInput) {
-        _this.textInput.value = '';
+        _this.textInput.value = "";
         _this.textInput.focus();
       }
     });
@@ -129,7 +129,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
 
       // reset the state
       _this.setState({
-        query: '',
+        query: "",
         selectionMode: false,
         selectedIndex: -1,
         currentEditIndex: -1
@@ -157,11 +157,10 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         query = _this$state2.query;
       var moveTag = allowDragDrop ? _this.moveTag : null;
       return tags.map(function (tag, index) {
-        return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, {
-          key: index
-        }, currentEditIndex === index ? /*#__PURE__*/_react["default"].createElement("div", {
+        return currentEditIndex === index ? /*#__PURE__*/_react["default"].createElement("div", {
+          key: tag[tag.labelField || "text"],
           className: classNames.editTagInput
-        }, /*#__PURE__*/_react["default"].createElement(InputHtmlTag, {
+        }, JSON.stringify(tag), /*#__PURE__*/_react["default"].createElement(InputHtmlTag, {
           ref: function ref(input) {
             _this.tagInput = input;
           },
@@ -174,6 +173,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
           onPaste: _this.handlePaste,
           "data-testid": "tag-edit"
         })) : /*#__PURE__*/_react["default"].createElement(_Tag["default"], {
+          key: tag[tag.labelField || "text"],
           index: index,
           tag: tag,
           labelField: labelField,
@@ -185,23 +185,23 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
           classNames: classNames,
           allowDragDrop: allowDragDrop,
           setIsReadyOnly: setIsReadyOnly
-        }));
+        });
       });
     });
     if (!props.inline) {
       /* eslint-disable no-console */
-      console.warn('[Deprecation] The inline attribute is deprecated and will be removed in v7.x.x, please use inputFieldPosition instead.');
+      console.warn("[Deprecation] The inline attribute is deprecated and will be removed in v7.x.x, please use inputFieldPosition instead.");
       /* eslint-enable no-console */
     }
 
     var _suggestions = props.suggestions;
     _this.state = {
       suggestions: _suggestions,
-      query: '',
+      query: "",
       isFocused: false,
       selectedIndex: -1,
       selectionMode: false,
-      ariaLiveStatus: '',
+      ariaLiveStatus: "",
       currentEditIndex: -1
     };
     _this.reactTagsRef = /*#__PURE__*/(0, _react.createRef)();
@@ -235,8 +235,6 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
   }, {
     key: "handleDelete",
     value: function handleDelete(index, event) {
-      event.preventDefault();
-      event.stopPropagation();
       var currentTags = this.props.tags.slice();
       // Early exit from the function if the array
       // is already empty
@@ -245,7 +243,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       }
       var ariaLiveStatus = "Tag at index ".concat(index, " with value ").concat(currentTags[index].id, " deleted.");
       this.props.handleDelete(index, event);
-      var allTags = this.reactTagsRef.current.querySelectorAll('.ReactTags__remove');
+      var allTags = this.reactTagsRef.current.querySelectorAll(".ReactTags__remove");
       var nextElementToFocus, nextIndex, nextTag;
       if (index === 0 && currentTags.length > 1) {
         nextElementToFocus = allTags[0];
@@ -263,7 +261,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       if (nextIndex >= 0) {
         ariaLiveStatus += " Tag at index ".concat(nextIndex, " with value ").concat(nextTag.id, " focussed. Press backspace to remove");
       } else {
-        ariaLiveStatus += 'Input focussed. Press enter to add a new tag';
+        ariaLiveStatus += "Input focussed. Press enter to add a new tag";
       }
       nextElementToFocus.focus();
       this.setState({
@@ -319,10 +317,16 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
     key: "handleBlur",
     value: function handleBlur(event) {
       var value = event.target.value;
+      var currentEditIndex = this.state.currentEditIndex;
+      if (this.props.isWhenBlurAutoUpdate) {
+        if (event.target.value.trim()) {
+          this.props.onTagUpdate(currentEditIndex, _defineProperty({}, this.props.labelField, event.target.value));
+        }
+      }
       if (this.props.handleInputBlur) {
         this.props.handleInputBlur(value);
         if (this.textInput) {
-          this.textInput.value = '';
+          this.textInput.value = "";
         }
       }
       this.setState({
@@ -355,19 +359,19 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       // If no text is typed in so far, ignore the action - so we don't end up with a terminating
       // character typed in.
       if (this.props.delimiters.indexOf(e.keyCode) !== -1 && !e.shiftKey) {
-        if (e.keyCode !== _constants.KEYS.TAB || query !== '') {
+        if (e.keyCode !== _constants.KEYS.TAB || query !== "") {
           e.preventDefault();
         }
         var selectedQuery = selectionMode && selectedIndex !== -1 ? suggestions[selectedIndex] : _defineProperty({
           id: query
         }, this.props.labelField, query);
-        if (selectedQuery !== '') {
+        if (selectedQuery !== "") {
           this.addTag(selectedQuery);
         }
       }
 
       // when backspace key is pressed and query is blank, delete tag
-      if (e.keyCode === _constants.KEYS.BACKSPACE && query === '' && this.props.allowDeleteFromEmptyInput) {
+      if (e.keyCode === _constants.KEYS.BACKSPACE && query === "" && this.props.allowDeleteFromEmptyInput) {
         this.handleDelete(this.props.tags.length - 1, e);
       }
 
@@ -398,11 +402,11 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       }
       e.preventDefault();
       var clipboardData = e.clipboardData || window.clipboardData;
-      var clipboardText = clipboardData.getData('text');
+      var clipboardText = clipboardData.getData("text");
       var _this$props$maxLength = this.props.maxLength,
         maxLength = _this$props$maxLength === void 0 ? clipboardText.length : _this$props$maxLength;
       var maxTextLength = Math.min(maxLength, clipboardText.length);
-      var pastedText = clipboardData.getData('text').substr(0, maxTextLength);
+      var pastedText = clipboardData.getData("text").substr(0, maxTextLength);
 
       // Used to determine how the pasted content is split.
       var delimiterRegExp = (0, _utils.buildRegExpFromDelimiters)(this.props.delimiters);
@@ -502,19 +506,19 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         onClick: this.clearAll
       })) : null;
       return /*#__PURE__*/_react["default"].createElement("div", {
-        className: (0, _classnames["default"])(classNames.tags, 'react-tags-wrapper'),
+        className: (0, _classnames["default"])(classNames.tags, "react-tags-wrapper"),
         ref: this.reactTagsRef
       }, /*#__PURE__*/_react["default"].createElement("p", {
         role: "alert",
         className: "sr-only",
         style: {
-          position: 'absolute',
-          overflow: 'hidden',
-          clip: 'rect(0 0 0 0)',
-          margin: '-1px',
+          position: "absolute",
+          overflow: "hidden",
+          clip: "rect(0 0 0 0)",
+          margin: "-1px",
           padding: 0,
-          width: '1px',
-          height: '1px',
+          width: "1px",
+          height: "1px",
           border: 0
         }
       }, this.state.ariaLiveStatus), position === _constants.INPUT_FIELD_POSITIONS.TOP && tagInput, /*#__PURE__*/_react["default"].createElement("div", {
@@ -570,7 +574,8 @@ _defineProperty(ReactTags, "propTypes", {
   inputType: _propTypes["default"].oneOfType([_propTypes["default"].string, _propTypes["default"].object]),
   // PropTypes.oneOf(['input', 'textarea']),
   isUseTagID: _propTypes["default"].bool,
-  setIsReadyOnly: _propTypes["default"].func
+  setIsReadyOnly: _propTypes["default"].func,
+  isWhenBlurAutoUpdate: _propTypes["default"].bool
 });
 _defineProperty(ReactTags, "defaultProps", {
   placeholder: _constants.DEFAULT_PLACEHOLDER,
@@ -595,8 +600,9 @@ _defineProperty(ReactTags, "defaultProps", {
   editable: false,
   clearAll: false,
   handleClearAll: _noop["default"],
-  inputType: 'input',
-  isUseTagID: false
+  inputType: "input",
+  isUseTagID: false,
+  isWhenBlurAutoUpdate: false
 });
 var WithContext = exports.WithContext = function WithContext(_ref2) {
   var props = _extends({}, (_objectDestructuringEmpty(_ref2), _ref2));

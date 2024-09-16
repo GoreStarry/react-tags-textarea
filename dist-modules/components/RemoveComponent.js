@@ -41,8 +41,13 @@ var RemoveComponent = function RemoveComponent(props) {
       index: index
     });
   }
+  var handleClick = function handleClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    onRemove();
+  };
   return /*#__PURE__*/_react["default"].createElement("button", {
-    onClick: onRemove,
+    onClick: handleClick,
     onKeyDown: onKeydown,
     className: className,
     type: "button",
