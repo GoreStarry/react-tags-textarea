@@ -160,7 +160,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         return currentEditIndex === index ? /*#__PURE__*/_react["default"].createElement("div", {
           key: tag[tag.labelField || "text"],
           className: classNames.editTagInput
-        }, JSON.stringify(tag), /*#__PURE__*/_react["default"].createElement(InputHtmlTag, {
+        }, /*#__PURE__*/_react["default"].createElement(InputHtmlTag, {
           ref: function ref(input) {
             _this.tagInput = input;
           },

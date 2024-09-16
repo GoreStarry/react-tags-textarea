@@ -25,6 +25,7 @@ const Tag = (props) => {
 
 	useDoubleClick({
 		onSingleClick: (e) => {
+			if (e.target.type === "button") return;
 			onTagClicked();
 		},
 		onDoubleClick: (e) => {
@@ -67,16 +68,15 @@ const Tag = (props) => {
 	const tagComponent = (
 		<span
 			id={id && `tag-${id}`}
+			ref={tagRef}
 			className={ClassNames("tag-wrapper", classNames.tag, className)}
 			style={{
 				opacity,
 				cursor: canDrag(props) ? "move" : "auto",
 			}}
 		>
-			<div ref={tagRef}>
-				<div dangerouslySetInnerHTML={markedLabel}></div>
-				{children}
-			</div>
+			<div dangerouslySetInnerHTML={markedLabel}></div>
+			{children}
 			<RemoveComponent
 				tag={props.tag}
 				className={classNames.remove}

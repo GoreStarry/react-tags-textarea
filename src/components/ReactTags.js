@@ -465,7 +465,6 @@ class ReactTags extends Component {
 					key={tag[tag.labelField || "text"]}
 					className={classNames.editTagInput}
 				>
-					{JSON.stringify(tag)}
 					<InputHtmlTag
 						ref={(input) => {
 							this.tagInput = input;

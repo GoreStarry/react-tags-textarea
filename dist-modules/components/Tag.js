@@ -51,6 +51,7 @@ var Tag = function Tag(props) {
     drag = _useDrag2[1];
   (0, _useDoubleClick["default"])({
     onSingleClick: function onSingleClick(e) {
+      if (e.target.type === "button") return;
       onTagClicked();
     },
     onDoubleClick: function onDoubleClick(e) {
@@ -96,16 +97,15 @@ var Tag = function Tag(props) {
   }, [label]);
   var tagComponent = /*#__PURE__*/_react["default"].createElement("span", {
     id: id && "tag-".concat(id),
+    ref: tagRef,
     className: (0, _classnames["default"])("tag-wrapper", classNames.tag, className),
     style: {
       opacity: opacity,
       cursor: (0, _utils.canDrag)(props) ? "move" : "auto"
     }
   }, /*#__PURE__*/_react["default"].createElement("div", {
-    ref: tagRef
-  }, /*#__PURE__*/_react["default"].createElement("div", {
     dangerouslySetInnerHTML: markedLabel
-  }), children), /*#__PURE__*/_react["default"].createElement(_RemoveComponent["default"], {
+  }), children, /*#__PURE__*/_react["default"].createElement(_RemoveComponent["default"], {
     tag: props.tag,
     className: classNames.remove,
     removeComponent: props.removeComponent,
