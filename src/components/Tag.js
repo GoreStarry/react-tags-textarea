@@ -11,8 +11,16 @@ const ItemTypes = { TAG: "tag" };
 
 const Tag = (props) => {
 	const tagRef = useRef(null);
-	const { readOnly, tag, classNames, index, setIsReadyOnly, onTagClicked } =
-		props;
+	const {
+		readOnly,
+		tag,
+		classNames,
+		index,
+		setIsReadyOnly,
+		onTagClicked,
+		onMouseDown,
+		onMouseUp,
+	} = props;
 
 	const [{ isDragging }, drag] = useDrag(() => ({
 		type: ItemTypes.TAG,
@@ -74,6 +82,8 @@ const Tag = (props) => {
 				opacity,
 				cursor: canDrag(props) ? "move" : "auto",
 			}}
+			onMouseDown={readOnly ? onMouseDown : undefined}
+			onMouseUp={readOnly ? onMouseUp : undefined}
 		>
 			<div dangerouslySetInnerHTML={markedLabel}></div>
 			{children}

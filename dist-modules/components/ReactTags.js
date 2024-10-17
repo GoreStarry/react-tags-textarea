@@ -150,7 +150,9 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         allowDragDrop = _this$props2.allowDragDrop,
         isUseTagID = _this$props2.isUseTagID,
         InputHtmlTag = _this$props2.inputType,
-        setIsReadyOnly = _this$props2.setIsReadyOnly;
+        setIsReadyOnly = _this$props2.setIsReadyOnly,
+        onMouseDown = _this$props2.onMouseDown,
+        onMouseUp = _this$props2.onMouseUp;
       var classNames = _objectSpread(_objectSpread({}, _constants.DEFAULT_CLASSNAMES), _this.props.classNames);
       var _this$state2 = _this.state,
         currentEditIndex = _this$state2.currentEditIndex,
@@ -184,7 +186,9 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
           readOnly: readOnly,
           classNames: classNames,
           allowDragDrop: allowDragDrop,
-          setIsReadyOnly: setIsReadyOnly
+          setIsReadyOnly: setIsReadyOnly,
+          onMouseDown: onMouseDown,
+          onMouseUp: onMouseUp
         });
       });
     });
@@ -575,7 +579,9 @@ _defineProperty(ReactTags, "propTypes", {
   // PropTypes.oneOf(['input', 'textarea']),
   isUseTagID: _propTypes["default"].bool,
   setIsReadyOnly: _propTypes["default"].func,
-  isWhenBlurAutoUpdate: _propTypes["default"].bool
+  isWhenBlurAutoUpdate: _propTypes["default"].bool,
+  onMouseDown: _propTypes["default"].func,
+  onMouseUp: _propTypes["default"].func
 });
 _defineProperty(ReactTags, "defaultProps", {
   placeholder: _constants.DEFAULT_PLACEHOLDER,
@@ -603,7 +609,10 @@ _defineProperty(ReactTags, "defaultProps", {
   inputType: "input",
   isUseTagID: false,
   isWhenBlurAutoUpdate: false
+  // onMouseDown: () => {},
+  // onMouseUp: () => {},
 });
+
 var WithContext = exports.WithContext = function WithContext(_ref2) {
   var props = _extends({}, (_objectDestructuringEmpty(_ref2), _ref2));
   return /*#__PURE__*/_react["default"].createElement(_reactDnd.DndProvider, {

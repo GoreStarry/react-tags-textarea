@@ -296,6 +296,14 @@ const App = () => {
 					// clearAll
 					// onClearAll={onClearAll}
 					inputType="textarea"
+					onMouseDown={(e) => {
+						e.stopPropagation();
+						console.log(e.target.innerText);
+					}}
+					onMouseUp={(e) => {
+						e.stopPropagation();
+						console.log(e.target.innerText);
+					}}
 				/>
 			</div>
 		</div>

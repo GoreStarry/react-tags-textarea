@@ -31,7 +31,9 @@ var Tag = function Tag(props) {
     classNames = props.classNames,
     index = props.index,
     setIsReadyOnly = props.setIsReadyOnly,
-    onTagClicked = props.onTagClicked;
+    onTagClicked = props.onTagClicked,
+    onMouseDown = props.onMouseDown,
+    onMouseUp = props.onMouseUp;
   var _useDrag = (0, _reactDnd.useDrag)(function () {
       return {
         type: ItemTypes.TAG,
@@ -102,7 +104,9 @@ var Tag = function Tag(props) {
     style: {
       opacity: opacity,
       cursor: (0, _utils.canDrag)(props) ? "move" : "auto"
-    }
+    },
+    onMouseDown: readOnly ? onMouseDown : undefined,
+    onMouseUp: readOnly ? onMouseUp : undefined
   }, /*#__PURE__*/_react["default"].createElement("div", {
     dangerouslySetInnerHTML: markedLabel
   }), children, /*#__PURE__*/_react["default"].createElement(_RemoveComponent["default"], {

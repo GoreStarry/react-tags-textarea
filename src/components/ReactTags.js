@@ -76,6 +76,8 @@ class ReactTags extends Component {
 		isUseTagID: PropTypes.bool,
 		setIsReadyOnly: PropTypes.func,
 		isWhenBlurAutoUpdate: PropTypes.bool,
+		onMouseDown: PropTypes.func,
+		onMouseUp: PropTypes.func,
 	};
 
 	static defaultProps = {
@@ -103,6 +105,8 @@ class ReactTags extends Component {
 		inputType: "input",
 		isUseTagID: false,
 		isWhenBlurAutoUpdate: false,
+		// onMouseDown: () => {},
+		// onMouseUp: () => {},
 	};
 
 	constructor(props) {
@@ -454,6 +458,8 @@ class ReactTags extends Component {
 			isUseTagID,
 			inputType: InputHtmlTag,
 			setIsReadyOnly,
+			onMouseDown,
+			onMouseUp,
 		} = this.props;
 		const classNames = { ...DEFAULT_CLASSNAMES, ...this.props.classNames };
 
@@ -493,6 +499,8 @@ class ReactTags extends Component {
 					classNames={classNames}
 					allowDragDrop={allowDragDrop}
 					setIsReadyOnly={setIsReadyOnly}
+					onMouseDown={onMouseDown}
+					onMouseUp={onMouseUp}
 				/>
 			);
 		});
