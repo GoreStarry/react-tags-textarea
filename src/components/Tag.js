@@ -83,7 +83,7 @@ const Tag = (props) => {
 				cursor: canDrag(props) ? "move" : "auto",
 			}}
 			onMouseDown={readOnly ? onMouseDown : undefined}
-			onMouseUp={readOnly ? onMouseUp : undefined}
+			onMouseUp={onMouseUp}
 		>
 			<div dangerouslySetInnerHTML={markedLabel}></div>
 			{children}

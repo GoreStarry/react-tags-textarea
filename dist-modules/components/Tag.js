@@ -106,7 +106,7 @@ var Tag = function Tag(props) {
       cursor: (0, _utils.canDrag)(props) ? "move" : "auto"
     },
     onMouseDown: readOnly ? onMouseDown : undefined,
-    onMouseUp: readOnly ? onMouseUp : undefined
+    onMouseUp: onMouseUp
   }, /*#__PURE__*/_react["default"].createElement("div", {
     dangerouslySetInnerHTML: markedLabel
   }), children, /*#__PURE__*/_react["default"].createElement(_RemoveComponent["default"], {
