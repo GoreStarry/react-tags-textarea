@@ -1,6 +1,8 @@
 /*eslint-disable */
 
 const { React, ReactDOM, ReactTags } = window;
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import GitHubCorner from "./GithubCorner";
 
 // List of countries in the world
@@ -227,7 +229,7 @@ const KeyCodes = {
 
 const delimiters = [...KeyCodes.enter, KeyCodes.comma];
 
-const Tags = ReactTags.WithContext;
+const Tags = ReactTags.WithOutContext;
 
 const Test = () => {
 	return <div>Test</div>;
@@ -240,6 +242,17 @@ const App = () => {
 		{ id: "Vietnam", text: "Vietnam", children: <Test /> },
 		{ id: "Turkey", text: "Turkey", children: <Test /> },
 	]);
+	const [tags2, setTags2] = React.useState([
+		{ id: "1", text: "1", children: <Test /> },
+		{ id: "2", text: "2", children: <Test /> },
+		{ id: "3", text: "3", children: <Test /> },
+		{ id: "4", text: "4", children: <Test /> },
+	]);
+
+	const cleanTargetTagData = (targetTag) => {
+		setTags((tags) => tags.filter((tag) => tag !== targetTag));
+		setTags2((tags) => tags.filter((tag) => tag !== targetTag));
+	};
 
 	const handleDelete = (i) => {
 		setTags(tags.filter((tag, index) => index !== i));
@@ -251,11 +264,27 @@ const App = () => {
 		setTags(updatedTags);
 	};
 
-	const handleAddition = (tag) => {
+	const onTagUpdate2 = (i, newTag) => {
+		const updatedTags = tags2.slice();
+		updatedTags.splice(i, 1, newTag);
+		setTags2(updatedTags);
+	};
+
+	const handleAddition = (tag, insertIndex) => {
+		console.log(insertIndex);
 		setTags([...tags, tag]);
+
+		insertIndex && handleDrag(tag, tags.length, insertIndex);
+	};
+
+	const handleAddition2 = (tag, insertIndex) => {
+		console.log(insertIndex);
+		setTags2([...tags2, tag]);
+		insertIndex && handleDrag2(tag, tags2.length, insertIndex);
 	};
 
 	const handleDrag = (tag, currPos, newPos) => {
+		// console.log(currPos, newPos);
 		const newTags = tags.slice();
 
 		newTags.splice(currPos, 1);
@@ -263,6 +292,17 @@ const App = () => {
 
 		// re-render
 		setTags(newTags);
+	};
+
+	const handleDrag2 = (tag, currPos, newPos) => {
+		console.log(currPos, newPos);
+		const newTags = tags2.slice();
+
+		newTags.splice(currPos, 1);
+		newTags.splice(newPos, 0, tag);
+
+		// re-render
+		setTags2(newTags);
 	};
 
 	const handleTagClick = (index) => {
@@ -279,32 +319,66 @@ const App = () => {
 
 			<h1> React Tags Example </h1>
 			<div>
-				<Tags
-					tags={tags}
-					// suggestions={suggestions}
-					delimiters={delimiters}
-					handleDelete={handleDelete}
-					handleAddition={handleAddition}
-					handleDrag={handleDrag}
-					handleTagClick={handleTagClick}
-					onTagUpdate={onTagUpdate}
-					inputFieldPosition="bottom"
-					isWhenBlurAutoUpdate
-					// autocomplete
+				<DndProvider backend={HTML5Backend}>
+					<Tags
+						tags={tags}
+						// suggestions={suggestions}
+						delimiters={delimiters}
+						handleDelete={handleDelete}
+						handleAddition={handleAddition}
+						handleDrag={handleDrag}
+						handleTagClick={handleTagClick}
+						onTagUpdate={onTagUpdate}
+						inputFieldPosition="bottom"
+						isWhenBlurAutoUpdate
+						type="Type1"
+						subType="subType1"
+						cleanTargetTagData={cleanTargetTagData}
+						// autocomplete
 
-					// readOnly
-					// clearAll
-					// onClearAll={onClearAll}
-					inputType="textarea"
-					onMouseDown={(e) => {
-						e.stopPropagation();
-						console.log(e.target.innerText);
-					}}
-					onMouseUp={(e) => {
-						e.stopPropagation();
-						console.log(e.target.innerText);
-					}}
-				/>
+						// readOnly
+						// clearAll
+						// onClearAll={onClearAll}
+						inputType="textarea"
+						onMouseDown={(e) => {
+							e.stopPropagation();
+							console.log(e.target.innerText);
+						}}
+						onMouseUp={(e) => {
+							e.stopPropagation();
+							console.log(e.target.innerText);
+						}}
+					/>
+					<Tags
+						tags={tags2}
+						// suggestions={suggestions}
+						delimiters={delimiters}
+						handleDelete={handleDelete}
+						handleAddition={handleAddition2}
+						handleDrag={handleDrag2}
+						handleTagClick={handleTagClick}
+						onTagUpdate={onTagUpdate2}
+						inputFieldPosition="bottom"
+						isWhenBlurAutoUpdate
+						type="Type2"
+						subType="subType2"
+						cleanTargetTagData={cleanTargetTagData}
+						// autocomplete
+
+						// readOnly
+						// clearAll
+						// onClearAll={onClearAll}
+						inputType="textarea"
+						onMouseDown={(e) => {
+							e.stopPropagation();
+							console.log(e.target.innerText);
+						}}
+						onMouseUp={(e) => {
+							e.stopPropagation();
+							console.log(e.target.innerText);
+						}}
+					/>
+				</DndProvider>
 			</div>
 		</div>
 	);

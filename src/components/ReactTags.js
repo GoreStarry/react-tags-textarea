@@ -78,6 +78,7 @@ class ReactTags extends Component {
 		isWhenBlurAutoUpdate: PropTypes.bool,
 		onMouseDown: PropTypes.func,
 		onMouseUp: PropTypes.func,
+		cleanTargetTagData: PropTypes.func,
 	};
 
 	static defaultProps = {
@@ -381,7 +382,12 @@ class ReactTags extends Component {
 		);
 	}
 
-	addTag = (tag) => {
+	dropTagFormOtherList = (originTag, dropIndex) => {
+		this.props.cleanTargetTagData(originTag);
+		this.addTag(originTag, dropIndex);
+	};
+
+	addTag = (tag, insertIndex) => {
 		const { tags, labelField, allowUnique } = this.props;
 		const { currentEditIndex } = this.state;
 		if (!tag.id || !tag[labelField]) {
@@ -407,7 +413,7 @@ class ReactTags extends Component {
 		// call method to add
 		if (currentEditIndex !== -1 && this.props.onTagUpdate)
 			this.props.onTagUpdate(currentEditIndex, tag);
-		else this.props.handleAddition(tag);
+		else this.props.handleAddition(tag, insertIndex);
 
 		// reset the state
 		this.setState({
@@ -446,6 +452,15 @@ class ReactTags extends Component {
 		// call handler with the index of the dragged tag
 		// and the tag that is hovered
 		this.props.handleDrag(dragTag, dragIndex, hoverIndex);
+	}
+
+	checkDropTagIsOriginalFromTagList(dropTag) {
+		console.log(dropTag);
+		return this.props.tags.find(
+			(tag) =>
+				tag.id === dropTag.id ||
+				tag[this.props.labelField] === dropTag[this.props.labelField],
+		);
 	}
 
 	getTagItems = () => {
@@ -501,6 +516,10 @@ class ReactTags extends Component {
 					setIsReadyOnly={setIsReadyOnly}
 					onMouseDown={onMouseDown}
 					onMouseUp={onMouseUp}
+					checkDropTagIsOriginalFromTagList={this.checkDropTagIsOriginalFromTagList.bind(
+						this,
+					)}
+					dropTagFormOtherList={this.dropTagFormOtherList.bind(this)}
 				/>
 			);
 		});

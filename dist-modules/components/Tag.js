@@ -33,7 +33,9 @@ var Tag = function Tag(props) {
     setIsReadyOnly = props.setIsReadyOnly,
     onTagClicked = props.onTagClicked,
     onMouseDown = props.onMouseDown,
-    onMouseUp = props.onMouseUp;
+    onMouseUp = props.onMouseUp,
+    checkDropTagIsOriginalFromTagList = props.checkDropTagIsOriginalFromTagList,
+    dropTagFormOtherList = props.dropTagFormOtherList;
   var _useDrag = (0, _reactDnd.useDrag)(function () {
       return {
         type: ItemTypes.TAG,
@@ -68,12 +70,17 @@ var Tag = function Tag(props) {
       return {
         accept: ItemTypes.TAG,
         drop: function drop(item, monitor) {
-          var dragIndex = item.index;
           var hoverIndex = index;
-          if (dragIndex === hoverIndex) {
-            return;
+          if (checkDropTagIsOriginalFromTagList(item.tag)) {
+            var dragIndex = item.index;
+            if (dragIndex === hoverIndex) {
+              return;
+            }
+            props.moveTag(dragIndex, hoverIndex);
+          } else {
+            // drop from other tag list
+            dropTagFormOtherList(item.tag, hoverIndex);
           }
-          props.moveTag(dragIndex, hoverIndex);
         },
         canDrop: function canDrop(item) {
           return (0, _utils.canDrop)(item);

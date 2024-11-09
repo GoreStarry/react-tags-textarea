@@ -20,6 +20,8 @@ const Tag = (props) => {
 		onTagClicked,
 		onMouseDown,
 		onMouseUp,
+		checkDropTagIsOriginalFromTagList,
+		dropTagFormOtherList,
 	} = props;
 
 	const [{ isDragging }, drag] = useDrag(() => ({
@@ -46,13 +48,17 @@ const Tag = (props) => {
 	const [, drop] = useDrop(() => ({
 		accept: ItemTypes.TAG,
 		drop: (item, monitor) => {
-			const dragIndex = item.index;
 			const hoverIndex = index;
-			if (dragIndex === hoverIndex) {
-				return;
+			if (checkDropTagIsOriginalFromTagList(item.tag)) {
+				const dragIndex = item.index;
+				if (dragIndex === hoverIndex) {
+					return;
+				}
+				props.moveTag(dragIndex, hoverIndex);
+			} else {
+				// drop from other tag list
+				dropTagFormOtherList(item.tag, hoverIndex);
 			}
-
-			props.moveTag(dragIndex, hoverIndex);
 		},
 		canDrop: (item) => canDrop(item),
 	}));

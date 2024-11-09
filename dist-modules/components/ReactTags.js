@@ -100,7 +100,11 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         selectedIndex: selectedIndex >= suggestions.length ? suggestions.length - 1 : selectedIndex
       });
     });
-    _defineProperty(_assertThisInitialized(_this), "addTag", function (tag) {
+    _defineProperty(_assertThisInitialized(_this), "dropTagFormOtherList", function (originTag, dropIndex) {
+      _this.props.cleanTargetTagData(originTag);
+      _this.addTag(originTag, dropIndex);
+    });
+    _defineProperty(_assertThisInitialized(_this), "addTag", function (tag, insertIndex) {
       var _this$props = _this.props,
         tags = _this$props.tags,
         labelField = _this$props.labelField,
@@ -125,7 +129,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       }
 
       // call method to add
-      if (currentEditIndex !== -1 && _this.props.onTagUpdate) _this.props.onTagUpdate(currentEditIndex, tag);else _this.props.handleAddition(tag);
+      if (currentEditIndex !== -1 && _this.props.onTagUpdate) _this.props.onTagUpdate(currentEditIndex, tag);else _this.props.handleAddition(tag, insertIndex);
 
       // reset the state
       _this.setState({
@@ -188,7 +192,9 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
           allowDragDrop: allowDragDrop,
           setIsReadyOnly: setIsReadyOnly,
           onMouseDown: onMouseDown,
-          onMouseUp: onMouseUp
+          onMouseUp: onMouseUp,
+          checkDropTagIsOriginalFromTagList: _this.checkDropTagIsOriginalFromTagList.bind(_assertThisInitialized(_this)),
+          dropTagFormOtherList: _this.dropTagFormOtherList.bind(_assertThisInitialized(_this))
         });
       });
     });
@@ -449,9 +455,18 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       this.props.handleDrag(dragTag, dragIndex, hoverIndex);
     }
   }, {
+    key: "checkDropTagIsOriginalFromTagList",
+    value: function checkDropTagIsOriginalFromTagList(dropTag) {
+      var _this4 = this;
+      console.log(dropTag);
+      return this.props.tags.find(function (tag) {
+        return tag.id === dropTag.id || tag[_this4.props.labelField] === dropTag[_this4.props.labelField];
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
       var tagItems = this.getTagItems();
       var classNames = _objectSpread(_objectSpread({}, _constants.DEFAULT_CLASSNAMES), this.props.classNames);
 
@@ -476,7 +491,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         className: classNames.tagInput
       }, /*#__PURE__*/_react["default"].createElement(InputHtmlTag, _extends({}, inputProps, {
         ref: function ref(input) {
-          _this4.textInput = input;
+          _this5.textInput = input;
         },
         className: classNames.tagInputField,
         type: "text",
@@ -581,7 +596,8 @@ _defineProperty(ReactTags, "propTypes", {
   setIsReadyOnly: _propTypes["default"].func,
   isWhenBlurAutoUpdate: _propTypes["default"].bool,
   onMouseDown: _propTypes["default"].func,
-  onMouseUp: _propTypes["default"].func
+  onMouseUp: _propTypes["default"].func,
+  cleanTargetTagData: _propTypes["default"].func
 });
 _defineProperty(ReactTags, "defaultProps", {
   placeholder: _constants.DEFAULT_PLACEHOLDER,
