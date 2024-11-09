@@ -24,14 +24,17 @@ const Tag = (props) => {
 		dropTagFormOtherList,
 	} = props;
 
-	const [{ isDragging }, drag] = useDrag(() => ({
-		type: ItemTypes.TAG,
-		collect: (monitor) => ({
-			isDragging: !!monitor.isDragging(),
+	const [{ isDragging }, drag] = useDrag(
+		() => ({
+			type: ItemTypes.TAG,
+			collect: (monitor) => ({
+				isDragging: !!monitor.isDragging(),
+			}),
+			item: props,
+			canDrag: () => canDrag(props),
 		}),
-		item: props,
-		canDrag: () => canDrag(props),
-	}));
+		[index, tag],
+	);
 
 	useDoubleClick({
 		onSingleClick: (e) => {
@@ -45,23 +48,26 @@ const Tag = (props) => {
 		latency: 250,
 	});
 
-	const [, drop] = useDrop(() => ({
-		accept: ItemTypes.TAG,
-		drop: (item, monitor) => {
-			const hoverIndex = index;
-			if (checkDropTagIsOriginalFromTagList(item.tag)) {
-				const dragIndex = item.index;
-				if (dragIndex === hoverIndex) {
-					return;
+	const [, drop] = useDrop(
+		() => ({
+			accept: ItemTypes.TAG,
+			drop: (item, monitor) => {
+				const hoverIndex = index;
+				if (checkDropTagIsOriginalFromTagList(item.tag)) {
+					const dragIndex = item.index;
+					if (dragIndex === hoverIndex) {
+						return;
+					}
+					props.moveTag(dragIndex, hoverIndex);
+				} else {
+					// drop from other tag list
+					dropTagFormOtherList(item.tag, hoverIndex);
 				}
-				props.moveTag(dragIndex, hoverIndex);
-			} else {
-				// drop from other tag list
-				dropTagFormOtherList(item.tag, hoverIndex);
-			}
-		},
-		canDrop: (item) => canDrop(item),
-	}));
+			},
+			canDrop: (item) => canDrop(item),
+		}),
+		[index, tag],
+	);
 
 	drag(drop(tagRef));
 

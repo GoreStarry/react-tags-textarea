@@ -49,7 +49,7 @@ var Tag = function Tag(props) {
           return (0, _utils.canDrag)(props);
         }
       };
-    }),
+    }, [index, tag]),
     _useDrag2 = _slicedToArray(_useDrag, 2),
     isDragging = _useDrag2[0].isDragging,
     drag = _useDrag2[1];
@@ -86,7 +86,7 @@ var Tag = function Tag(props) {
           return (0, _utils.canDrop)(item);
         }
       };
-    }),
+    }, [index, tag]),
     _useDrop2 = _slicedToArray(_useDrop, 2),
     drop = _useDrop2[1];
   drag(drop(tagRef));
