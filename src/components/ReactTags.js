@@ -383,8 +383,8 @@ class ReactTags extends Component {
 	}
 
 	dropTagFormOtherList = (originTag, dropIndex) => {
-		this.props.cleanTargetTagData(originTag);
 		this.addTag(originTag, dropIndex);
+		this.props.cleanTargetTagData(originTag);
 	};
 
 	addTag = (tag, insertIndex) => {
@@ -423,7 +423,9 @@ class ReactTags extends Component {
 			currentEditIndex: -1,
 		});
 
-		this.resetAndFocusInput();
+		if (currentEditIndex === -1) {
+			this.resetAndFocusInput();
+		}
 	};
 
 	handleSuggestionClick(i) {
@@ -455,7 +457,6 @@ class ReactTags extends Component {
 	}
 
 	checkDropTagIsOriginalFromTagList(dropTag) {
-		console.log(dropTag);
 		return this.props.tags.find(
 			(tag) =>
 				tag.id === dropTag.id ||

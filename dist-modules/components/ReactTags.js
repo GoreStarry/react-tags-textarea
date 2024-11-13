@@ -101,8 +101,8 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       });
     });
     _defineProperty(_assertThisInitialized(_this), "dropTagFormOtherList", function (originTag, dropIndex) {
-      _this.props.cleanTargetTagData(originTag);
       _this.addTag(originTag, dropIndex);
+      _this.props.cleanTargetTagData(originTag);
     });
     _defineProperty(_assertThisInitialized(_this), "addTag", function (tag, insertIndex) {
       var _this$props = _this.props,
@@ -138,7 +138,9 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         selectedIndex: -1,
         currentEditIndex: -1
       });
-      _this.resetAndFocusInput();
+      if (currentEditIndex === -1) {
+        _this.resetAndFocusInput();
+      }
     });
     _defineProperty(_assertThisInitialized(_this), "clearAll", function () {
       if (_this.props.onClearAll) {
@@ -458,7 +460,6 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
     key: "checkDropTagIsOriginalFromTagList",
     value: function checkDropTagIsOriginalFromTagList(dropTag) {
       var _this4 = this;
-      console.log(dropTag);
       return this.props.tags.find(function (tag) {
         return tag.id === dropTag.id || tag[_this4.props.labelField] === dropTag[_this4.props.labelField];
       });

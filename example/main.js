@@ -280,7 +280,7 @@ const App = () => {
 	const handleAddition2 = (tag, insertIndex) => {
 		console.log(insertIndex);
 		setTags2([...tags2, tag]);
-		insertIndex && handleDrag2(tag, tags2.length, insertIndex);
+		insertIndex !== undefined && handleDrag2(tag, tags2.length, insertIndex);
 	};
 
 	const handleDrag = (tag, currPos, newPos) => {
