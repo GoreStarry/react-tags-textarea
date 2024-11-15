@@ -7,7 +7,7 @@ exports.buildRegExpFromDelimiters = buildRegExpFromDelimiters;
 exports.canDrag = canDrag;
 exports.canDrop = canDrop;
 var _escapeRegExp = _interopRequireDefault(require("lodash/escapeRegExp"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 /**
  * Convert an array of delimiter characters into a regular expression
  * that can be used to split content by those delimiters.

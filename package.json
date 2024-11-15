@@ -1,6 +1,6 @@
 {
   "name": "react-tag-input",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "React tags is a fantastically simple tagging component for your React projects",
   "main": "dist-modules/components/ReactTags.js",
   "files": [
@@ -82,10 +82,10 @@
     "semantic-release": "17.2.3",
     "sinon": "11.1.1",
     "style-loader": "2.0.0",
-    "webpack": "5.76.0",
-    "webpack-bundle-analyzer": "3.9.0",
-    "webpack-cli": "4.10.0",
-    "webpack-dev-server": "4.9.3"
+    "webpack": "5.96.1",
+    "webpack-bundle-analyzer": "4.10.2",
+    "webpack-cli": "5.1.4",
+    "webpack-dev-server": "5.1.0"
   },
   "config": {
     "commitizen": {

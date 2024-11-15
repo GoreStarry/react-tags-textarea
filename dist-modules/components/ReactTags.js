@@ -23,41 +23,40 @@ var _classnames = _interopRequireDefault(require("classnames"));
 var _Tag = _interopRequireDefault(require("./Tag"));
 var _utils = require("./utils");
 var _constants = require("./constants");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _objectDestructuringEmpty(t) { if (null == t) throw new TypeError("Cannot destructure " + t); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function _readOnlyError(r) { throw new TypeError('"' + r + '" is read-only'); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); } //Constants
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
+function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
+function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
+function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
+function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } //Constants
 var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
-  _inherits(ReactTags, _Component);
-  var _super = _createSuper(ReactTags);
   function ReactTags(props) {
     var _this;
     _classCallCheck(this, ReactTags);
-    _this = _super.call(this, props);
-    _defineProperty(_assertThisInitialized(_this), "filteredSuggestions", function (query) {
+    _this = _callSuper(this, ReactTags, [props]);
+    _defineProperty(_this, "filteredSuggestions", function (query) {
       var suggestions = _this.props.suggestions;
       if (_this.props.allowUnique) {
         var existingTags = _this.props.tags.map(function (tag) {
@@ -78,10 +77,10 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       });
       return exactSuggestions.concat(partialSuggestions);
     });
-    _defineProperty(_assertThisInitialized(_this), "getQueryIndex", function (query, item) {
+    _defineProperty(_this, "getQueryIndex", function (query, item) {
       return item[_this.props.labelField].toLowerCase().indexOf(query.toLowerCase());
     });
-    _defineProperty(_assertThisInitialized(_this), "resetAndFocusInput", function () {
+    _defineProperty(_this, "resetAndFocusInput", function () {
       _this.setState({
         query: ""
       });
@@ -90,7 +89,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         _this.textInput.focus();
       }
     });
-    _defineProperty(_assertThisInitialized(_this), "updateSuggestions", function () {
+    _defineProperty(_this, "updateSuggestions", function () {
       var _this$state = _this.state,
         query = _this$state.query,
         selectedIndex = _this$state.selectedIndex;
@@ -100,11 +99,11 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         selectedIndex: selectedIndex >= suggestions.length ? suggestions.length - 1 : selectedIndex
       });
     });
-    _defineProperty(_assertThisInitialized(_this), "dropTagFormOtherList", function (originTag, dropIndex) {
+    _defineProperty(_this, "dropTagFormOtherList", function (originTag, dropIndex) {
       _this.addTag(originTag, dropIndex);
       _this.props.cleanTargetTagData(originTag);
     });
-    _defineProperty(_assertThisInitialized(_this), "addTag", function (tag, insertIndex) {
+    _defineProperty(_this, "addTag", function (tag, insertIndex) {
       var _this$props = _this.props,
         tags = _this$props.tags,
         labelField = _this$props.labelField,
@@ -142,12 +141,12 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         _this.resetAndFocusInput();
       }
     });
-    _defineProperty(_assertThisInitialized(_this), "clearAll", function () {
+    _defineProperty(_this, "clearAll", function () {
       if (_this.props.onClearAll) {
         _this.props.onClearAll();
       }
     });
-    _defineProperty(_assertThisInitialized(_this), "getTagItems", function () {
+    _defineProperty(_this, "getTagItems", function () {
       var _this$props2 = _this.props,
         tags = _this$props2.tags,
         labelField = _this$props2.labelField,
@@ -185,18 +184,18 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
           index: index,
           tag: tag,
           labelField: labelField,
-          onDelete: _this.handleDelete.bind(_assertThisInitialized(_this), index),
+          onDelete: _this.handleDelete.bind(_this, index),
           moveTag: moveTag,
           removeComponent: removeComponent,
-          onTagClicked: _this.handleTagClick.bind(_assertThisInitialized(_this), index, tag),
+          onTagClicked: _this.handleTagClick.bind(_this, index, tag),
           readOnly: readOnly,
           classNames: classNames,
           allowDragDrop: allowDragDrop,
           setIsReadyOnly: setIsReadyOnly,
           onMouseDown: onMouseDown,
           onMouseUp: onMouseUp,
-          checkDropTagIsOriginalFromTagList: _this.checkDropTagIsOriginalFromTagList.bind(_assertThisInitialized(_this)),
-          dropTagFormOtherList: _this.dropTagFormOtherList.bind(_assertThisInitialized(_this))
+          checkDropTagIsOriginalFromTagList: _this.checkDropTagIsOriginalFromTagList.bind(_this),
+          dropTagFormOtherList: _this.dropTagFormOtherList.bind(_this)
         });
       });
     });
@@ -205,7 +204,6 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       console.warn("[Deprecation] The inline attribute is deprecated and will be removed in v7.x.x, please use inputFieldPosition instead.");
       /* eslint-enable no-console */
     }
-
     var _suggestions = props.suggestions;
     _this.state = {
       suggestions: _suggestions,
@@ -217,17 +215,18 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       currentEditIndex: -1
     };
     _this.reactTagsRef = /*#__PURE__*/(0, _react.createRef)();
-    _this.handleFocus = _this.handleFocus.bind(_assertThisInitialized(_this));
-    _this.handleBlur = _this.handleBlur.bind(_assertThisInitialized(_this));
-    _this.handleKeyDown = _this.handleKeyDown.bind(_assertThisInitialized(_this));
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
-    _this.moveTag = _this.moveTag.bind(_assertThisInitialized(_this));
-    _this.handlePaste = _this.handlePaste.bind(_assertThisInitialized(_this));
-    _this.handleSuggestionHover = _this.handleSuggestionHover.bind(_assertThisInitialized(_this));
-    _this.handleSuggestionClick = _this.handleSuggestionClick.bind(_assertThisInitialized(_this));
+    _this.handleFocus = _this.handleFocus.bind(_this);
+    _this.handleBlur = _this.handleBlur.bind(_this);
+    _this.handleKeyDown = _this.handleKeyDown.bind(_this);
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.moveTag = _this.moveTag.bind(_this);
+    _this.handlePaste = _this.handlePaste.bind(_this);
+    _this.handleSuggestionHover = _this.handleSuggestionHover.bind(_this);
+    _this.handleSuggestionClick = _this.handleSuggestionClick.bind(_this);
     return _this;
   }
-  _createClass(ReactTags, [{
+  _inherits(ReactTags, _Component);
+  return _createClass(ReactTags, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this$props3 = this.props,
@@ -546,7 +545,6 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
       }, tagItems, position === _constants.INPUT_FIELD_POSITIONS.INLINE && tagInput), position === _constants.INPUT_FIELD_POSITIONS.BOTTOM && tagInput);
     }
   }]);
-  return ReactTags;
 }(_react.Component);
 _defineProperty(ReactTags, "propTypes", {
   placeholder: _propTypes["default"].string,
@@ -629,7 +627,6 @@ _defineProperty(ReactTags, "defaultProps", {
   // onMouseDown: () => {},
   // onMouseUp: () => {},
 });
-
 var WithContext = exports.WithContext = function WithContext(_ref2) {
   var props = _extends({}, (_objectDestructuringEmpty(_ref2), _ref2));
   return /*#__PURE__*/_react["default"].createElement(_reactDnd.DndProvider, {
