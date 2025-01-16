@@ -22,6 +22,7 @@ const Tag = (props) => {
 		onMouseUp,
 		checkDropTagIsOriginalFromTagList,
 		dropTagFormOtherList,
+		beforeComponent,
 	} = props;
 
 	const [{ isDragging }, drag] = useDrag(
@@ -97,6 +98,7 @@ const Tag = (props) => {
 			onMouseDown={readOnly ? onMouseDown : undefined}
 			onMouseUp={onMouseUp}
 		>
+			{beforeComponent?.()}
 			<div dangerouslySetInnerHTML={markedLabel}></div>
 			{children}
 			<RemoveComponent

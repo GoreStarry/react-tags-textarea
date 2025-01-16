@@ -157,7 +157,9 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
         InputHtmlTag = _this$props2.inputType,
         setIsReadyOnly = _this$props2.setIsReadyOnly,
         onMouseDown = _this$props2.onMouseDown,
-        onMouseUp = _this$props2.onMouseUp;
+        onMouseUp = _this$props2.onMouseUp,
+        date = _this$props2.date,
+        beforeComponent = _this$props2.beforeComponent;
       var classNames = _objectSpread(_objectSpread({}, _constants.DEFAULT_CLASSNAMES), _this.props.classNames);
       var _this$state2 = _this.state,
         currentEditIndex = _this$state2.currentEditIndex,
@@ -186,6 +188,7 @@ var ReactTags = exports.WithOutContext = /*#__PURE__*/function (_Component) {
           labelField: labelField,
           onDelete: _this.handleDelete.bind(_this, index),
           moveTag: moveTag,
+          beforeComponent: beforeComponent,
           removeComponent: removeComponent,
           onTagClicked: _this.handleTagClick.bind(_this, index, tag),
           readOnly: readOnly,
@@ -572,6 +575,8 @@ _defineProperty(ReactTags, "propTypes", {
   minQueryLength: _propTypes["default"].number,
   shouldRenderSuggestions: _propTypes["default"].func,
   removeComponent: _propTypes["default"].func,
+  date: _propTypes["default"].string,
+  beforeComponent: _propTypes["default"].func,
   autocomplete: _propTypes["default"].oneOfType([_propTypes["default"].bool, _propTypes["default"].number]),
   readOnly: _propTypes["default"].bool,
   classNames: _propTypes["default"].object,

@@ -3,7 +3,16 @@
 const { React, ReactDOM, ReactTags } = window;
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 import GitHubCorner from "./GithubCorner";
+
+function datePickerComponent() {
+	const [startDate, setStartDate] = React.useState(new Date());
+	return (
+		<DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+	);
+}
 
 // List of countries in the world
 const COUNTRIES = [
@@ -317,7 +326,7 @@ const App = () => {
 		<div className="app">
 			<GitHubCorner />
 
-			<h1> React Tags Example </h1>
+			<h1> React Tags Example 123</h1>
 			<div>
 				<DndProvider backend={HTML5Backend}>
 					<Tags
@@ -363,6 +372,7 @@ const App = () => {
 						type="Type2"
 						subType="subType2"
 						cleanTargetTagData={cleanTargetTagData}
+						beforeComponent={datePickerComponent}
 						// autocomplete
 
 						// readOnly

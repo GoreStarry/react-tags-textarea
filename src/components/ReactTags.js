@@ -53,6 +53,8 @@ class ReactTags extends Component {
 		minQueryLength: PropTypes.number,
 		shouldRenderSuggestions: PropTypes.func,
 		removeComponent: PropTypes.func,
+		date: PropTypes.string,
+		beforeComponent: PropTypes.func,
 		autocomplete: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
 		readOnly: PropTypes.bool,
 		classNames: PropTypes.object,
@@ -476,6 +478,8 @@ class ReactTags extends Component {
 			setIsReadyOnly,
 			onMouseDown,
 			onMouseUp,
+			date,
+			beforeComponent,
 		} = this.props;
 		const classNames = { ...DEFAULT_CLASSNAMES, ...this.props.classNames };
 
@@ -509,6 +513,7 @@ class ReactTags extends Component {
 					labelField={labelField}
 					onDelete={this.handleDelete.bind(this, index)}
 					moveTag={moveTag}
+					beforeComponent={beforeComponent}
 					removeComponent={removeComponent}
 					onTagClicked={this.handleTagClick.bind(this, index, tag)}
 					readOnly={readOnly}
