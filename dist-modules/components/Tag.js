@@ -10,7 +10,6 @@ var _reactDnd = require("react-dnd");
 var _propTypes = _interopRequireDefault(require("prop-types"));
 var _classnames = _interopRequireDefault(require("classnames"));
 var _utils = require("./utils");
-var _useDoubleClick = _interopRequireDefault(require("use-double-click"));
 var _RemoveComponent = _interopRequireDefault(require("./RemoveComponent"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -26,6 +25,7 @@ var ItemTypes = {
 };
 var Tag = function Tag(props) {
   var tagRef = (0, _react.useRef)(null);
+  var refClickCount = (0, _react.useRef)(0);
   var readOnly = props.readOnly,
     tag = props.tag,
     classNames = props.classNames,
@@ -54,19 +54,20 @@ var Tag = function Tag(props) {
     _useDrag2 = _slicedToArray(_useDrag, 2),
     isDragging = _useDrag2[0].isDragging,
     drag = _useDrag2[1];
-  (0, _useDoubleClick["default"])({
-    onSingleClick: function onSingleClick(e) {
-      if (e.target.type === "button") return;
-      onTagClicked();
-    },
-    onDoubleClick: function onDoubleClick(e) {
-      setIsReadyOnly === null || setIsReadyOnly === void 0 || setIsReadyOnly(function (state) {
-        return !state;
-      });
-    },
-    ref: tagRef,
-    latency: 250
-  });
+  var handleClick = (0, _react.useCallback)(function (e) {
+    refClickCount.current += 1;
+    setTimeout(function () {
+      if (refClickCount.current === 1) {
+        if (e.target.type === "button") return;
+        onTagClicked();
+      } else if (refClickCount.current === 2) {
+        setIsReadyOnly === null || setIsReadyOnly === void 0 || setIsReadyOnly(function (state) {
+          return !state;
+        });
+      }
+      refClickCount.current = 0;
+    }, 250);
+  }, [onTagClicked, setIsReadyOnly]);
   var _useDrop = (0, _reactDnd.useDrop)(function () {
       return {
         accept: ItemTypes.TAG,
@@ -113,6 +114,7 @@ var Tag = function Tag(props) {
       opacity: opacity,
       cursor: (0, _utils.canDrag)(props) ? "move" : "auto"
     },
+    onClick: handleClick,
     onMouseDown: readOnly ? onMouseDown : undefined,
     onMouseUp: onMouseUp
   }, /*#__PURE__*/_react["default"].createElement("div", null, beforeComponent === null || beforeComponent === void 0 ? void 0 : beforeComponent({

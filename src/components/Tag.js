@@ -1,9 +1,8 @@
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useCallback } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import PropTypes from "prop-types";
 import ClassNames from "classnames";
 import { canDrag, canDrop } from "./utils";
-import useDoubleClick from "use-double-click";
 
 import RemoveComponent from "./RemoveComponent";
 
@@ -11,6 +10,7 @@ const ItemTypes = { TAG: "tag" };
 
 const Tag = (props) => {
 	const tagRef = useRef(null);
+	const refClickCount = useRef(0);
 	const {
 		readOnly,
 		tag,
@@ -37,17 +37,22 @@ const Tag = (props) => {
 		[index, tag],
 	);
 
-	useDoubleClick({
-		onSingleClick: (e) => {
-			if (e.target.type === "button") return;
-			onTagClicked();
+	const handleClick = useCallback(
+		(e) => {
+			refClickCount.current += 1;
+
+			setTimeout(() => {
+				if (refClickCount.current === 1) {
+					if (e.target.type === "button") return;
+					onTagClicked();
+				} else if (refClickCount.current === 2) {
+					setIsReadyOnly?.((state) => !state);
+				}
+				refClickCount.current = 0;
+			}, 250);
 		},
-		onDoubleClick: (e) => {
-			setIsReadyOnly?.((state) => !state);
-		},
-		ref: tagRef,
-		latency: 250,
-	});
+		[onTagClicked, setIsReadyOnly],
+	);
 
 	const [, drop] = useDrop(
 		() => ({
@@ -95,6 +100,7 @@ const Tag = (props) => {
 				opacity,
 				cursor: canDrag(props) ? "move" : "auto",
 			}}
+			onClick={handleClick}
 			onMouseDown={readOnly ? onMouseDown : undefined}
 			onMouseUp={onMouseUp}
 		>
