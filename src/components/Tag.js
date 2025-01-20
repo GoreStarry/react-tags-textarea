@@ -98,8 +98,10 @@ const Tag = (props) => {
 			onMouseDown={readOnly ? onMouseDown : undefined}
 			onMouseUp={onMouseUp}
 		>
-			{beforeComponent?.({ id, index })}
-			<div dangerouslySetInnerHTML={markedLabel}></div>
+			<div>
+				{beforeComponent?.({ id, index })}
+				<div dangerouslySetInnerHTML={markedLabel}></div>
+			</div>
 			{children}
 			<RemoveComponent
 				tag={props.tag}

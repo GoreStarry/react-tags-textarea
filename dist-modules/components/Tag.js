@@ -115,12 +115,12 @@ var Tag = function Tag(props) {
     },
     onMouseDown: readOnly ? onMouseDown : undefined,
     onMouseUp: onMouseUp
-  }, beforeComponent === null || beforeComponent === void 0 ? void 0 : beforeComponent({
+  }, /*#__PURE__*/_react["default"].createElement("div", null, beforeComponent === null || beforeComponent === void 0 ? void 0 : beforeComponent({
     id: id,
     index: index
   }), /*#__PURE__*/_react["default"].createElement("div", {
     dangerouslySetInnerHTML: markedLabel
-  }), children, /*#__PURE__*/_react["default"].createElement(_RemoveComponent["default"], {
+  })), children, /*#__PURE__*/_react["default"].createElement(_RemoveComponent["default"], {
     tag: props.tag,
     className: classNames.remove,
     removeComponent: props.removeComponent,
